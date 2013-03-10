@@ -1,0 +1,31 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+mainClassName = 'io.artfuldodge.ibgateway.Main'
+
+sourceSets {
+	main {
+		java {
+			srcDir 'src'
+		}
+	}
+}
+
+repositories {
+	flatDir {
+		dirs 'libs'
+	}
+}
+
+dependencies {
+	compile name: 'jts'
+	runtime name: 'hsqldb'
+	runtime name: 'jcommon', version: '1.0.12'
+	runtime name: 'jfreechart', version: '1.0.9'
+	runtime name: 'jhall'
+	runtime name: 'locales'
+	runtime name: 'other'
+	runtime name: 'rss'
+}
+
