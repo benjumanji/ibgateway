@@ -1,6 +1,7 @@
 [Unit]
 Description=Interactive Brokers Gateway Service
-After=network.target
+After=network.target syslog.target ibgvnc.service
+Requires=ibgvnc.service
 
 [Service]
 User=ib
@@ -8,8 +9,7 @@ Group=users
 
 SyslogIdentifier=ibgateway
 
-Environment=DISPLAY=:1
-ExecStartPre=/usr/bin/vncserver :1
+Environment=DISPLAY=:9
 ExecStart=/usr/bin/ibgateway
 Restart=on-abort
 
