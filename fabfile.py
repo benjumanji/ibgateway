@@ -14,7 +14,7 @@ def dev():
     env.hosts = ['localhost']
 
 def prod():
-    env.user = 'ben'
+    env.user = 'ib'
     env.hosts = ['batcave.artfuldodge.io']
 
 def build():
