@@ -1,0 +1,16 @@
+[Unit]
+Description=Remote desktop *uniquely* for ibgateway
+After=syslog.target network.target
+
+[Service]
+Type=forking
+User=ib
+Group=users
+
+ExecStartPre=/usr/bin/vncserver -kill :9
+ExecStart=/usr/bin/vncserver :9
+ExecStop=/usr/bin/vncserver -kill :9
+
+[Install]
+WantedBy=multiuser.target
+

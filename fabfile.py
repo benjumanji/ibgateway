@@ -26,6 +26,9 @@ def clean():
 def initialise():
     run(git_path)
 
+def pull():
+    run('git pull origin master')
+
 def copy_ini():
     ini = os.path.expanduser('~/.ib/ib.ini')
     run('mkdir -p /home/%s/.ib' % env.user)
@@ -33,10 +36,11 @@ def copy_ini():
     put('~/.ib/settings', '~/.ib')
 
 def copy_unit():
-    if not exists('/usr/local/lib/systemd/'):
-        sudo('mkdir -p /usr/local/lib/systemd/')
+    path = '/usr/local/lib/systemd/system'
+    if not exists(path):
+        sudo('mkdir -p %s' % path)
     with cd('systemd'):
-        sudo('cp ibgateway.service /usr/local/lib/systemd/')
+        sudo('cp *.service %s' % path)
 
 def install():
     with cd('build/install/%s' % project_name):
@@ -56,6 +60,7 @@ def deploy():
         if not exists(project_name):
             initialise()
         with cd(project_name):
+            pull()
             build()
             install()
             copy_unit()
