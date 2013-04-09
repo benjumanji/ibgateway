@@ -18,8 +18,8 @@ public class Main {
 		BasicIniReader ini = new BasicIniReader(new File(path));
 		IbGatewayListener listener = new IbGatewayListener(ini);
 		Toolkit.getDefaultToolkit().addAWTEventListener(listener, AWTEvent.WINDOW_EVENT_MASK);
-		
-		String[] args1 = { "settings" };
+		String settings = "~/.ib/settings".replace("~",System.getProperty("user.home"));
+		String[] args1 = { settings };
 		ibgateway.GWClient.main(args1);
 
 	}

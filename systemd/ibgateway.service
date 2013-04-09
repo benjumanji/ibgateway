@@ -1,0 +1,17 @@
+[Unit]
+Description=Interactive Brokers Gateway Service
+After=network.target
+
+[Service]
+User=ib
+Group=users
+
+SyslogIdentifier=ibgateway
+
+Environment=DISPLAY=:1
+ExecStartPre=/usr/bin/vncserver :1
+ExecStart=/usr/bin/ibgateway
+Restart=on-abort
+
+[Install]
+WantedBy=multiuser.target
